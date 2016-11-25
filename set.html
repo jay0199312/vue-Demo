@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>set</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <p>{{car}} <button @click="delcar">X</button></p>
+    <p>{{pen}} <button @click="delpen">X</button></p>
+    <button onclick="delthecar()">删除car</button>
+    <button onclick="delthepen()">删除pen</button>
+</div>
+<script>
+    var json = {car:1};
+    var jay = new Vue({
+        el:"#app",
+        data:json,
+        methods:{
+            delcar:function () {
+                this.car=""
+            },
+            delpen:function () {
+                this.pen=""
+            }
+        }
+    });
+    Vue.set(json,'pen','5');
+    jay.$set("pen","2")
+    function delthecar() {
+        Vue.delete(json,"car")
+    }
+    function delthepen() {
+        Vue.delete(json,"pen")
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>asdf</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">asdfasdfasdf</div>
+<script>
+var asdf = Vue.extend({
+data:function () {
+return({message:'真是狗日的'})
+}
+});
+var jayTemps = new asdf({
+templaet:'<h1>{{message}}</h1>'
+});
+jayTemps.$mount('#app');
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>component</title>
+<script src="vue.js"></script>
+<body>
+<template id="j1">
+    <p>{{say}}</p>
+    <p>{{sonMsg}}</p>
+    <button @click="addup">子组件的数据操作</button>
+</template>
+<template id="j2">
+    <cp-son :son-Msg.sync="num"></cp-son>
+    <p>{{num}}</p>
+    {{told}}
+</template>
+
+<div id="app">
+    <cp-father></cp-father>
+</div>
+<script>
+    var son = Vue.extend({
+        props:['sonMsg'],
+        data:function () {
+            return({
+                say:'我是儿子！',
+            })
+        },
+        template:'#j1',
+        methods:{
+            addup:function () {
+                this.sonMsg++
+            }
+        }
+    });
+    var father = Vue.extend({
+        data:function () {
+            return({
+                told:'我是你爹！',
+                num:0
+            })
+        },
+        template:'#j2',
+        components:{
+            'cp-son':son
+        }
+    });
+    new Vue({
+        el:'#app',
+        components:{
+            'cp-father':father
+        }
+    })
+
+</script>
+</body>
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>component</title>
+    <script src="vue.js"></script>
+</head>
+</html>

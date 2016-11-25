@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>set</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--对应下面的数据-->
+    <input type="text" v-jay:val.red.boder.log="alertlog">
+    <button @click="upd">更新</button>
+</div>
+<script>
+   Vue.directive('jay',{//必须在构造器之前
+
+       bind:function (value) {
+           this.el.style.color="red"
+       },
+       update:function () {//所谓更新针对alertlog，有变化的话就会执行一遍指令
+            console.log(this.name);//指令名称
+           console.log(this.expression);//指令等于的东西=>alertlog
+           console.log(this.arg);//指令前面的值
+           console.log(this.modifiers);//指令后面两个值
+       },
+       unbind:function () {
+
+       }
+   });
+    new Vue({
+        el:'#app',
+        data:{
+            alertlog:'11'
+        },
+        methods:{
+            upd:function () {
+                this.alertlog++;
+            }
+        }
+    })
+</script>
+</body>
+</html>

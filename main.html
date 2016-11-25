@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+	<title></title>
+	<script src="vue.js"></script>
+	<style>
+		.red{
+			color: #eeddff;
+		}
+		.block{
+			width: 300px;
+			height:100px;
+			display: block;
+			color: #fff;
+		}
+		.black{
+			background: #000;
+		}
+	</style>
+ </head>
+<body >
+<div id="app">
+	<h2 @click='money'>{{message}}</h2>
+	<input type="text" v-model="message">
+	<ul>
+		<li v-for="item of todos">{{item.li}}</li>
+	</ul>
+	<div v-text></div>
+	<p v-if="really">我真的是日了狗了</p>
+
+
+	<div :class="{red:isRed}">
+		1111111
+	</div>
+	<div :class="[block,black]">
+		222222
+	</div>
+	<div :class="[block,{black:isRed}]">
+		333333
+	</div>
+	<div :style="{fontSize:size+'px'}">
+		4444444
+	</div>
+	<div :style="[styleA,styleB]">
+		55555555
+	</div>
+	<!--//动态模板-->
+	<partial :name="jaystemp"></partial>
+</div>
+
+<!--template-->
+	<div id="jaystemps">asdfasdfasdf</div>
+	<script>
+		Vue.partial("jaystemp1","<div :style='[styleA,styleB]'>55555555</div>")
+		Vue.partial("jaystemp2","<div :style='[styleA,styleB]'>55555555</div>")
+		Vue.partial("jaystemp3","<div :style='[styleA,styleB]'>55555555</div>")
+		var app = new Vue({
+			el:'#app',
+			data:{
+				message:"好东西来的喔",
+				todos:[
+					{li:"fuck girl"},
+					{li:"have car"},
+					{li:"have beautyhouse"}
+				],
+				really:1,
+				isRed:true,
+				block:"block",
+				black:"black",
+				size:"50",
+				styleA:{
+					color:"#fff"
+				},
+				styleB:{
+					background:"blue",
+//					display:"block",
+					fontSize:"50px"
+				},
+				jaystemp:"jaystemp1"
+
+				
+			},
+			methods: {
+				money:function () {
+					this.message = "问题是你有钱吗？"
+				}
+			}
+		});
+		var jaytemplate = Vue.extend({
+			data:function () {
+				return({message:"真是狗日的"})
+			}
+		});
+		var jaytemps = new jaytemplate({
+			templaet:"<h1>{{message}}</h1>"
+		});
+		jaytemps.$mount('#jaystemps');
+	</script>
+</body>
+</html>

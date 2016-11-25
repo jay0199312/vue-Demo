@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>component</title>
+    <script src="vue.js"></script>
+</head>
+<script type="x-template" id="m2">
+    <p>{{say}}</p>
+</script>
+<script type="x-template" id="m1">
+    <p>{{message}}</p>
+    <jays-child></jays-child>
+</script>
+
+<body>
+<div id="app">
+    <will-jay></will-jay>
+
+</div>
+<script>
+    var jayschild = Vue.extend({
+       data:function () {
+           return({say:'I am child of jay'})
+       },
+        template:'#m2'//不能在子标签上声明子标签作用域
+    });
+
+    var jay = Vue.extend({
+        data:function () {
+            return ({message:'jay is an hero!!!'})
+        },
+        template:'#m1',
+        components:{//声明子作用域和有多少个子作用域；（这里的component加s）
+            'jays-child':jayschild
+        }
+    });
+//    Vue.component('will-jay',jay);（全局的不用加s）
+
+
+    new Vue({
+        el:'#app',
+        components:{
+            "will-jay":jay
+        }
+    })
+</script>
+</body>
+</html>

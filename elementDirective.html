@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>set</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <jay a="fuck">this is jays elementDirective</jay>
+</div>
+<script>
+   Vue.elementDirective('jay',{
+       params:['a'],
+       bind:function (value) {
+           this.el.style.color="red"
+           alert(this.params.a)
+       },
+       unbind:function () {
+
+       }
+   });
+    new Vue({
+        el:'#app',
+        data:{
+            message:"hello jay!"
+        }
+    })
+</script>
+</body>
+</html>

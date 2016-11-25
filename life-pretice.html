@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>component生命周期</title>
+<script src="vue.js"></script>
+<body>
+<template id="f1">
+    <p>{{message}}</p>
+
+</template>
+
+<div id="app">
+    <cp-father></cp-father>
+</div>
+<hr>
+<button onclick="move()">转移实例</button>
+<button onclick="del()">卸载实例</button>
+<hr>
+<div id="app2">
+    我有内涵
+</div>
+<script>
+    var father  = Vue.extend({
+        data:function () {
+            return({message:'组件生命周期'})
+        },
+        template:'#f1'
+    });
+    var vm = new Vue({
+        el:'#app',
+        components:{
+            'cp-father':father
+        },
+        beforeCreate:function () {
+          console.log('beforeCreate')
+        },
+        created:function () {
+          console.log('created')
+        },
+        beforeMount:function () {
+          console.log('beforeMount')
+        },
+        mounted:function () {
+          console.log('mounted')
+        },
+        beforeUpdate:function () {
+          console.log('beforeUpdate')
+        },
+        updated:function () {
+          console.log('updated')
+        },
+        activated:function () {
+          console.log('activated')
+        },
+        deactivated:function () {
+          console.log('deactivated')
+        },
+        beforeDestroy:function () {
+          console.log('beforeDestroy')
+        },
+        destroyed:function () {
+          console.log('destroyed')
+        }
+    });
+    function move() {
+        vm.$appendTo('#app2')
+    }
+    function del() {
+
+    }
+</script>
+</body>
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>component</title>
+    <script src="vue.js"></script>
+</head>
+</html>

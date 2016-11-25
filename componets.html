@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>component</title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <will-jay></will-jay>
+    <jays-child></jays-child>
+</div>
+<script>
+
+    Vue.component('jays-child',{
+        template:'I am child of jay'
+    });
+    Vue.component('will-jay',{
+        template:'<div>jay is an hero!!!</div>'
+    });
+
+    new Vue({
+        el:'#app'
+    })
+</script>
+</body>
+</html>
